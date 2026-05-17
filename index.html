@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
     body {
-        background-image: url("file:///android_res/drawable/dvbk");
+        /* Đã đổi sang ảnh online chung thư mục để bao hiện hình nền 100% không bị chặn */
+        background-image: url("dvbk.png");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -129,29 +130,26 @@
                 if(window.AndroidBridge){
                     AndroidBridge.thongBaoThanhCong();
                 } else {
-                    alert("Đã load xong! (Web Mode)");
                     location.reload();
                 }
             }, 2000);
         } else {
-            alert("Key sai rồi vũ ơi!");
+            // ĐÃ BỎ LỆNH ALERT GÂY LỖI CRASH TOAST TRÊN SKETCHWARE
+            if(window.AndroidBridge){
+                AndroidBridge.thongBaoSaiKey();
+            } else {
+                input.value = "";
+                input.placeholder = "SAI KEY RỒI VŨ ƠI!";
+            }
         }
     }
 
-    // Hàm xử lý ép buộc Android bật ứng dụng YouTube/Trình duyệt ngoài
     function getKey() {
-        var targetUrl = "https://youtu.be/sfmyn2FhDK0?si=_orXUQOSmL9RG2is";
-        
-        // Cách 1: Nếu trong code Android Java/Kotlin của app bạn có hàm hỗ trợ mở link ngoài (ví dụ: AndroidBridge.openUrl)
-        // Bạn có thể bỏ dấu // ở dòng dưới để dùng:
-        // if(window.AndroidBridge && window.AndroidBridge.openUrl) { window.AndroidBridge.openUrl(targetUrl); return; }
-
-        // Cách 2: Tạo một thẻ ẩn giả lập cú pháp Intent của hệ điều hành Android để ép WebView đá link ra ngoài
-        var a = document.createElement('a');
-        a.href = "intent://youtu.be/sfmyn2FhDK0?si=_orXUQOSmL9RG2is#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=" + encodeURIComponent(targetUrl) + ";end";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        if(window.AndroidBridge){
+            AndroidBridge.moLinkNgoai();
+        } else {
+            window.open("https://link4sub.com/notes/KjAx", "_blank");
+        }
     }
 </script>
 </body>
