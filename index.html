@@ -65,13 +65,15 @@
         </div>
     </div>
 
-    <script>
+        <script>
         function checkKey() {
             var key = document.getElementById("keyInput").value;
+            // "AndroidBridge" phải khớp với tên bạn khai báo trong Java
+            // "thongBaoThanhCong" phải khớp với tên hàm trong Java
             if (key === "TIENPHAT") {
-                Android.openMenuActivity();
+                AndroidBridge.thongBaoThanhCong();
             } else {
-                alert("Sai key rồi!");
+                AndroidBridge.thongBaoSaiKey();
             }
         }
         function pasteKey() {
