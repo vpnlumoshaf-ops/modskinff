@@ -3,82 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống đang bảo trì</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #121212; color: #ffffff; font-family: sans-serif; display: flex; justify-content: center; padding-top: 40px; margin: 0; }
-        
-        /* Khung bao trùm toàn bộ nội dung */
-        .main-wrapper {
-            position: relative;
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 30px;
-            width: 300px;
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', sans-serif;
             text-align: center;
         }
-        /* Thanh xanh trên cùng của khung bao trùm */
-        .main-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
-            background: #00f2ea;
-            border-radius: 12px 12px 0 0;
+        .container {
+            max-width: 600px;
+            padding: 20px;
         }
-
-        h1 { font-size: 24px; margin-bottom: 5px; color: #fff; }
-        .blue-text { color: #00f2ea; }
-        p { color: #888; font-size: 14px; margin-bottom: 25px; }
-
-        /* Style cho phần Key */
-        .key-label { text-align: left; font-size: 12px; margin-bottom: 5px; font-weight: bold; }
-        .input-box {
-            display: flex; align-items: center; background: #121212;
-            border: 1px solid #333; padding: 10px; border-radius: 8px; margin-bottom: 20px;
+        .gear-icon {
+            font-size: 80px;
+            color: #38bdf8;
+            animation: spin 3s linear infinite;
+            margin-bottom: 20px;
         }
-        input { flex: 1; background: transparent; border: none; color: #fff; outline: none; }
-        .paste-icon { cursor: pointer; color: #00f2ea; }
-
-        button { width: 100%; padding: 12px; margin: 8px 0; background-color: #00f2ea; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-
-        .footer-icons { display: flex; justify-content: space-around; margin-top: 20px; }
-        .icon-box { color: #00f2ea; font-size: 12px; }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        h1 { color: #38bdf8; margin-bottom: 10px; }
+        p { font-size: 1.1rem; color: #94a3b8; }
+        .admin-contact {
+            margin-top: 30px;
+            padding: 15px;
+            background: #1e293b;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+        span { color: #facc15; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="main-wrapper">
-        <h1>Aimlock <span class="blue-text">Premium v5</span></h1>
-        <p>Log in to start session</p>
+    <div class="container">
+        <div class="gear-icon"><i class="fas fa-cog"></i></div>
+        <h1>HỆ THỐNG AIMLOCK PREMIUM</h1>
+        <p>Hệ thống đang được nâng cấp lên <strong>v6</strong> để mang lại trải nghiệm tốt nhất.</p>
         
-        <div class="key-label">Key</div>
-        <div class="input-box">
-            <input type="text" id="keyInput" placeholder=" ">
-            <span class="paste-icon" onclick="pasteKey()">📋</span>
-        </div>
-        
-        <button onclick="checkKey()">Login</button>
-        <button style="background-color: #00f2ea;">Get Key</button>
-        
-        <div class="footer-icons">
-            <div class="icon-box"><div>✈️</div><span>Group</span></div>
-            <div class="icon-box"><div>✈️</div><span>Channel</span></div>
+        <div class="admin-contact">
+            Vui lòng liên hệ Admin <span>Tiến Phát</span> để biết thêm thông tin chi tiết.
         </div>
     </div>
 
-        <script>
-        function checkKey() {
-            var key = document.getElementById("keyInput").value;
-            // "AndroidBridge" phải khớp với tên bạn khai báo trong Java
-            // "thongBaoThanhCong" phải khớp với tên hàm trong Java
-            if (key === "161213") {
-                AndroidBridge.thongBaoThanhCong();
-            } else {
-                AndroidBridge.thongBaoSaiKey();
-            }
-        }
-        function pasteKey() {
-            navigator.clipboard.readText().then(text => { document.getElementById("keyInput").value = text; });
-        }
-    </script>
 </body>
 </html>
